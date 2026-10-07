@@ -1,0 +1,241 @@
+.about {
+	padding: 110px 24px;
+	background: var(--color-bg);
+	overflow: hidden; /* para que la animación de entrada no genere scroll horizontal */
+	/* Ya era blanca antes de este cambio: la marcamos con un borde para
+     que se distinga del resto de la página, ahora también blanca. */
+	border-top: 4px solid var(--color-primary);
+	border-bottom: 4px solid var(--color-primary);
+}
+
+.about-inner {
+	max-width: var(--container-max);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENTRADA
+   Se dispara una sola vez (ver useInView) cuando la sección
+   entra en el viewport: la imagen llega desde la izquierda y
+   el texto desde la derecha, ambos convergiendo al centro.
+   ========================================================= */
+.about-media,
+.about-content {
+	opacity: 0;
+	transition:
+		transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 0.9s ease;
+}
+
+.about-media {
+	transform: translateX(-90px);
+}
+
+.about-content {
+	transform: translateX(90px);
+	transition-delay: 0.15s; /* el texto llega un instante después que la imagen */
+}
+
+.about.is-visible .about-media,
+.about.is-visible .about-content {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.about-media,
+	.about-content {
+		transition: none;
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* ---- Columna de imágenes ---- */
+.about-media {
+	position: relative;
+	padding: 20px 40px 60px 0;
+}
+
+.about-main-image {
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	box-shadow: 0 20px 44px rgba(16, 27, 45, 0.18);
+}
+
+.about-main-image img {
+	display: block;
+	width: 100%;
+	height: 420px;
+	object-fit: cover;
+}
+
+.about-video-card {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 46%;
+	aspect-ratio: 4 / 3;
+	border: 6px solid var(--color-bg);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	padding: 0;
+	cursor: pointer;
+	box-shadow: 0 16px 36px rgba(16, 27, 45, 0.24);
+}
+
+.about-video-card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.about-video-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background: linear-gradient(180deg, rgba(16, 27, 45, 0.1) 0%, rgba(16, 27, 45, 0.55) 100%);
+}
+
+.about-play-btn {
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	background: var(--color-accent);
+	color: var(--color-text-light);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.9rem;
+	padding-left: 3px; /* centrar visualmente el triángulo de "play" */
+	transition: transform 0.15s ease;
+}
+
+.about-video-card:hover .about-play-btn {
+	transform: scale(1.08);
+}
+
+.about-video-label {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 1.1rem;
+	color: var(--color-text-light);
+}
+
+/* Decoraciones de esquina: patrón de puntos con el color de acento,
+   evocando el motivo floral de la referencia sin depender de un asset. */
+.about-deco {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	background-image: radial-gradient(var(--color-accent) 22%, transparent 23%);
+	background-size: 16px 16px;
+	opacity: 0.35;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.about-deco-top {
+	top: -20px;
+	left: -20px;
+}
+
+.about-deco-bottom {
+	bottom: -20px;
+	right: 6%;
+}
+
+/* ---- Columna de texto ---- */
+.about-badge {
+	display: inline-block;
+	padding: 8px 16px;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg));
+	color: var(--color-accent-dark);
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	margin-bottom: 18px;
+}
+
+.about-title {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 2.6rem;
+	line-height: 1.2;
+	color: var(--color-primary);
+	margin: 0 0 22px;
+}
+
+.about-title-accent {
+	color: var(--color-accent);
+}
+
+.about-paragraph {
+	font-family: var(--font-body);
+	font-size: 1.05rem;
+	line-height: 1.75;
+	color: color-mix(in srgb, var(--color-text) 75%, transparent);
+	margin: 0 0 30px;
+}
+
+.about-checklist {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.about-checklist li {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 1.05rem;
+	color: var(--color-primary);
+}
+
+.about-check {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--color-accent) 16%, var(--color-bg));
+	color: var(--color-accent);
+	font-size: 0.85rem;
+	flex-shrink: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+	.about {
+		padding: 72px 20px;
+	}
+
+	.about-inner {
+		grid-template-columns: 1fr;
+		gap: 60px;
+	}
+
+	.about-media {
+		padding: 20px 24px 56px 0;
+	}
+
+	.about-title {
+		font-size: 2.1rem;
+	}
+}

@@ -1,0 +1,71 @@
+// Un objeto por pestaña. El componente Products.jsx solo necesita
+// este array: para agregar/quitar una categoría, se edita acá.
+
+export const productCategories = [
+	{
+		id: 'shrubs',
+		tabLabel: 'Shrubs and Hedges',
+		titleAccent: 'Shrubs',
+		titleRest: '& Hedges',
+		paragraphs: [
+			'Lorem ipsum dolor sit amet, consectetur et adipisicing elit sed do eiuse smodete tempor incididunt ut labore et dolore magna aliqua.',
+			'Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.',
+		],
+		image: 'https://images.unsplash.com/photo-1611843467160-25afb8df1074?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#shrubs-and-hedges',
+	},
+	{
+		id: 'flowering',
+		tabLabel: 'Flowering Plants',
+		titleAccent: 'Flowering',
+		titleRest: 'Plants',
+		paragraphs: ['Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis.', 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.'],
+		image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#flowering-plants',
+	},
+	{
+		id: 'ground-covers',
+		tabLabel: 'Ground Covers',
+		titleAccent: 'Ground',
+		titleRest: 'Covers',
+		paragraphs: [
+			'Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem investigationes demonstraverunt lectores legere.',
+			'Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius claritas est etiam processus dynamicus qui sequitur mutationem.',
+		],
+		image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#ground-covers',
+	},
+	{
+		id: 'trees',
+		tabLabel: 'Trees & Accent Plants',
+		titleAccent: 'Trees',
+		titleRest: '& Accent Plants',
+		paragraphs: ['Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica.', 'Eodem modo typi qui nunc nobis videntur parum clari, fiant sollemnes in futurum quam nostra decem lectorum monstrare.'],
+		image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#trees-and-accent-plants',
+	},
+	{
+		id: 'grasses',
+		tabLabel: 'Ornamental Grasses',
+		titleAccent: 'Ornamental',
+		titleRest: 'Grasses',
+		paragraphs: ['Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula.', 'Per seacula quarta decima et quinta decima. Eodem modo typi qui nunc nobis videntur parum clari fiant sollemnes.'],
+		image: 'https://images.unsplash.com/photo-1508022713622-df2d8fb7b4cd?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#ornamental-grasses',
+	},
+	{
+		id: 'drought-tolerant',
+		tabLabel: 'Drought Tolerant',
+		titleAccent: 'Drought',
+		titleRest: 'Tolerant',
+		paragraphs: ['Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus qui sequitur.', 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim.'],
+		image: 'https://images.unsplash.com/photo-1459156212016-c812468e2115?q=80&w=1200&auto=format&fit=crop',
+		ctaLabel: 'Read More',
+		ctaHref: '#drought-tolerant',
+	},
+];

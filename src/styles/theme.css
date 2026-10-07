@@ -1,0 +1,38 @@
+/*
+  THEME / PALETA DE COLORES
+  --------------------------------------------------
+  Rediseño monocromático: solo navy (#273a57) + blanco. El resto de
+  los tonos (textos "muted", bordes, fondos suaves) son mezclas de
+  esos dos colores vía color-mix(), no colores nuevos.
+
+  --color-text usa un navy casi negro (en vez del mismo #273a57) para
+  que las palabras "accent" de los títulos (que sí usan #273a57 puro)
+  se sigan distinguiendo del texto normal — si no, al ser exactamente
+  el mismo color, el resaltado de los títulos se perdería por completo.
+*/
+
+:root {
+	/* Colores principales */
+	--color-primary: #273a57; /* navy: navbar, footer, botones, bordes de sección */
+	--color-primary-dark: #1b2b42; /* navy más oscuro, para estados hover */
+	--color-accent: #273a57; /* mismo navy: ya no hay un segundo color de acento */
+	--color-accent-dark: #1b2b42;
+
+	/* Neutros: mezclas de navy + blanco, no colores nuevos */
+	--color-bg: #ffffff;
+	--color-bg-soft: #eef1f6; /* blanco con una pizca de navy, para paneles internos */
+	--color-text: #141f30; /* navy casi negro: texto de cuerpo/títulos sobre blanco */
+	--color-text-light: #ffffff; /* texto sobre fondos navy (navbar, footer, botones) */
+	--color-text-muted: color-mix(in srgb, #141f30 60%, transparent);
+	--color-border: color-mix(in srgb, #273a57 18%, white);
+
+	/* Tipografía */
+	--font-heading: 'Poppins', 'Segoe UI', sans-serif;
+	--font-body: 'Inter', 'Segoe UI', sans-serif;
+
+	/* Layout */
+	--container-max: 1240px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--header-height: 88px;
+}

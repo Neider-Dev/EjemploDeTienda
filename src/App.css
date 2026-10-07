@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+}
+
+/* Reset para que no queden barras/márgenes a los costados y todo
+   ocupe el 100% del ancho y alto de la pantalla. */
+html,
+body,
+#root {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100%;
+	overflow-x: hidden; /* evita scroll horizontal, no oculta contenido vertical */
+}
+
+body {
+	font-family: var(--font-body);
+	color: var(--color-text);
+}
+
+.app {
+	position: relative;
+	width: 100%;
+}

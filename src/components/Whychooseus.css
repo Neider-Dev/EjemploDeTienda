@@ -1,0 +1,215 @@
+.why {
+	background: var(--color-bg); /* antes navy; ahora blanco como el resto */
+	padding: 110px 24px;
+	overflow: hidden; /* para que la animación de entrada no genere scroll horizontal */
+}
+
+.why-inner {
+	max-width: var(--container-max);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENTRADA (igual patrón que About.jsx): se
+   dispara una sola vez, imagen desde la izquierda y texto
+   desde la derecha, convergiendo al centro.
+   ========================================================= */
+.why-media,
+.why-content {
+	opacity: 0;
+	transition:
+		transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 0.9s ease;
+}
+
+.why-media {
+	transform: translateX(-90px);
+}
+
+.why-content {
+	transform: translateX(90px);
+	transition-delay: 0.15s;
+}
+
+.why.is-visible .why-media,
+.why.is-visible .why-content {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.why-media,
+	.why-content {
+		transition: none;
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* ---- Imagen + efecto de onda ---- */
+.why-image {
+	position: relative;
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	box-shadow: 0 20px 44px rgba(20, 31, 48, 0.18);
+}
+
+.why-image img {
+	display: block;
+	width: 100%;
+	height: 560px;
+	object-fit: cover;
+	transition: transform 0.5s ease;
+}
+
+.why-image:hover img {
+	transform: scale(1.06);
+}
+
+/* Círculo que nace en el centro de la imagen: transparente en el
+   medio, más blanco/brillante hacia el borde que va creciendo, y
+   se apaga de nuevo hacia afuera. Se repite mientras el cursor
+   sigue encima. */
+.why-ripple {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 42%;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	transform: translate(-50%, -50%) scale(0.3);
+	background: radial-gradient(circle, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.55) 72%, rgba(255, 255, 255, 0) 100%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.why-image:hover .why-ripple {
+	animation: why-ripple-pulse 1.4s ease-out infinite;
+}
+
+@keyframes why-ripple-pulse {
+	0% {
+		transform: translate(-50%, -50%) scale(0.25);
+		opacity: 0;
+	}
+	15% {
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(2.4);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.why-image img,
+	.why-ripple {
+		transition: none;
+	}
+	.why-image:hover .why-ripple {
+		animation: none;
+	}
+}
+
+/* ---- Contenido de texto ---- */
+.why-badge {
+	display: inline-block;
+	padding: 8px 16px;
+	border-radius: 999px;
+	background: var(--color-bg-soft);
+	border: 1px solid var(--color-border);
+	color: var(--color-primary);
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	margin-bottom: 18px;
+}
+
+.why-title {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 2.5rem;
+	line-height: 1.25;
+	color: var(--color-text);
+	margin: 0 0 22px;
+}
+
+.why-title-accent {
+	color: var(--color-accent);
+}
+
+.why-paragraph {
+	font-family: var(--font-body);
+	font-size: 1.02rem;
+	line-height: 1.75;
+	color: var(--color-text-muted);
+	margin: 0 0 26px;
+	max-width: 560px;
+}
+
+.why-ideas-label {
+	font-family: var(--font-body);
+	font-weight: 700;
+	color: var(--color-text);
+	margin: 0 0 14px;
+}
+
+.why-checklist {
+	list-style: none;
+	margin: 0 0 32px;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.why-checklist li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-family: var(--font-body);
+	font-size: 1.02rem;
+	color: var(--color-text-muted);
+}
+
+.why-check {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	color: var(--color-accent);
+	font-size: 0.85rem;
+	flex-shrink: 0;
+}
+
+.why-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+	.why {
+		padding: 72px 20px;
+	}
+
+	.why-inner {
+		grid-template-columns: 1fr;
+		gap: 44px;
+	}
+
+	.why-image img {
+		height: 380px;
+	}
+
+	.why-title {
+		font-size: 2rem;
+	}
+}

@@ -1,0 +1,230 @@
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh; /* pantalla completa */
+	overflow: hidden;
+	background: var(--color-bg); /* antes era navy; ahora toda sección de contenido es blanca */
+}
+
+/* ---- Viewport + track deslizante ---- */
+.hero-viewport {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.hero-track {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+	will-change: transform;
+}
+
+.hero-slide {
+	flex: 0 0 100%; /* cada slide ocupa el 100% del track */
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+/* Layout de dos columnas: texto a la izquierda, imagen a la derecha.
+   El max-width + padding es lo que hace que la imagen quede separada
+   de los bordes de la pantalla, en vez de ocupar todo el fondo. */
+.hero-slide-inner {
+	width: 100%;
+	max-width: var(--container-max);
+	margin: 0 auto;
+	padding: 0 48px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 56px;
+	align-items: center;
+}
+
+/* ---- Flechas ---- */
+.hero-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	border: none;
+	background: var(--color-primary);
+	color: var(--color-text-light);
+	font-size: 1.7rem;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.15s ease;
+}
+
+.hero-arrow:hover {
+	background: var(--color-primary-dark);
+}
+
+.hero-arrow-left {
+	left: 24px;
+}
+
+.hero-arrow-right {
+	right: 24px;
+}
+
+/* ---- Dots de posición ---- */
+.hero-dots {
+	position: absolute;
+	bottom: 28px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+	z-index: 10;
+}
+
+.hero-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: none;
+	background: var(--color-border);
+	cursor: pointer;
+	padding: 0;
+	transition:
+		background 0.15s ease,
+		transform 0.15s ease;
+}
+
+.hero-dot.is-active {
+	background: var(--color-accent);
+	transform: scale(1.2);
+}
+
+/* ---- Contenido de texto (columna izquierda) ---- */
+.hero-content {
+	position: relative;
+	z-index: 2;
+
+	/* El recuadro completo también aparece deslizándose hacia arriba */
+	animation: hero-fade-up 1s ease both;
+}
+
+.hero-eyebrow {
+	font-family: var(--font-body);
+	color: var(--color-accent);
+	font-weight: 600;
+	margin-bottom: 12px;
+
+	animation: hero-fade-up 1s ease both;
+	animation-delay: 0.1s;
+}
+
+.hero-title {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 3rem;
+	line-height: 1.15;
+	color: var(--color-text);
+	margin: 0 0 20px;
+
+	animation: hero-fade-up 1s ease both;
+	animation-delay: 0.25s;
+}
+
+.hero-title-accent {
+	color: var(--color-accent);
+}
+
+.hero-paragraph {
+	font-family: var(--font-body);
+	font-size: 1.05rem;
+	line-height: 1.7;
+	color: var(--color-text-muted);
+	margin: 0 0 32px;
+	max-width: 480px;
+	/* --color-text-muted ya es, por definición, una mezcla de
+     --color-text + transparente (ver theme.css), así que funciona
+     igual de bien sobre blanco que antes sobre navy. */
+
+	animation: hero-fade-up 1s ease both;
+	animation-delay: 0.45s;
+}
+
+.hero-actions {
+	display: flex;
+	gap: 16px;
+	flex-wrap: wrap;
+
+	animation: hero-fade-up 1s ease both;
+	animation-delay: 0.65s;
+}
+
+/* Aparición hacia arriba: empieza más abajo y transparente,
+   termina en su posición final totalmente visible. */
+@keyframes hero-fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(48px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ---- Imagen (columna derecha): recuadro que no toca los bordes ---- */
+.hero-image {
+	position: relative;
+	height: min(70vh, 560px);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	box-shadow: 0 24px 54px rgba(0, 0, 0, 0.35);
+	background: var(--color-primary-dark); /* fallback si no hay imagen */
+}
+
+.hero-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Quienes prefieran menos movimiento en pantalla: respeta la
+   preferencia del sistema operativo y muestra el contenido sin animar. */
+@media (prefers-reduced-motion: reduce) {
+	.hero-content,
+	.hero-eyebrow,
+	.hero-title,
+	.hero-paragraph,
+	.hero-actions {
+		animation: none;
+	}
+}
+
+@media (max-width: 900px) {
+	.hero-slide-inner {
+		grid-template-columns: 1fr;
+		padding: 0 24px;
+		gap: 28px;
+	}
+
+	.hero-image {
+		height: 40vh;
+		order: -1; /* la imagen se ve primero, arriba del texto */
+	}
+
+	.hero-title {
+		font-size: 2.1rem;
+	}
+
+	.hero-arrow {
+		width: 38px;
+		height: 38px;
+		font-size: 1.3rem;
+	}
+}
