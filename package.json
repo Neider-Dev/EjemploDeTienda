@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"Homepage": "https://neider-dev.github.io/tienda",
+		"Homepage": "https://neider-dev.github.io/EjemploDeTienda/",
 		"deploy": "gh-pages -d dist",
 		"predeploy": "npm run build"
 	},
